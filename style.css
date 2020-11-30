@@ -1,0 +1,95 @@
+.nosotros{
+    background-color:#595959;
+    text-align: center;
+    padding: 1em ;
+    font-family: 'Oswald', sans-serif;
+   
+}
+
+.imagesport{
+    padding: 0.5em; 
+    border-radius:25px
+}
+
+.Portfolio{
+    background-color:#F2F2F2;
+    text-align: center;
+    padding: 1em ;
+   
+}
+
+.titulosportfolio{
+    background-color:#BFBFBF
+    font-style arial,  
+    font-size 2em;
+    
+}
+
+.servicios{
+    background-color:#595959;
+    text-align: center;
+    padding: 1em ;
+    font-family: 'Sora', sans-serif;
+}
+
+
+.contacto{
+    padding: 0.5em;
+    text-decoration: none;
+    color:#F2F2F2;
+    
+}
+
+a:hover {
+    color:#F2F2F2;
+  }
+a:visited {
+    color:#F2F2F2;
+}
+  a:active {
+    color:#F2F2F2;
+}
+a:link {
+    color:#F2F2F2;
+}
+
+
+.cotizador{
+    background-color:#F2F2F2;
+
+}
+
+h1{
+    color: #0D0D0D ;
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+}
+
+h2{
+    color: #0D0D0D ;
+    text-align: center;
+    padding: 1em;
+    border: 0;
+    font-family: 'Fjalla One', sans-serif;}
+
+h3{
+    color: #F2F2F2 ;
+    text-align: center;
+    font-family: 'Sora', sans-serif;
+    font-size: 1em;
+}
+
+p{
+    color: #0D0D0D ;
+    text-align: center;
+    font-family: 'Sora', sans-serif;
+}
+
+/* Color Theme Swatches in Hex */
+.Interacción-1-hex { color: #73BFBF; }
+.Interacción-2-hex { color: #F2F2F2; }
+.Interacción-3-hex { color: #BFBFBF; }
+.Interacción-4-hex { color: #595959; }
+.Interacción-5-hex { color: #0D0D0D; }
+
+
