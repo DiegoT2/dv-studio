@@ -85,6 +85,17 @@ p{
     font-family: 'Sora', sans-serif;
 }
 
+#bg {
+    width: 100%;
+    height: 100%;
+    max-height: 400px;
+    max-width: 3600px;
+    min-height: 20%;
+    min-width: 20%;
+    
+    background-color: #73BFBF;
+    }
+
 /* Color Theme Swatches in Hex */
 .Interacción-1-hex { color: #73BFBF; }
 .Interacción-2-hex { color: #F2F2F2; }

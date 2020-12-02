@@ -30,8 +30,6 @@ $('#Contacto-click').click( function(e) {
     }, 1000);
 } );
 
-
-
 var outputSup3 = $("#customRange3");
  var sliderValue3 = $("#valueSlider3");
 
@@ -139,7 +137,7 @@ var Servicio4 = new Product("Presentacion Municipal", 3500, outputSup4.val(), $(
 var Servicio5 = new Product("Simulacion de Incendio", 3500, outputSup5.val(), $("#cantidad5").val(), 1);
 var Servicio6 = new Product("Plano de Evacuacion", 1500, outputSup6.val(), $("#cantidad6").val(), 1);
 
-function Guardar(){
+function Calcular(){
     var totalGuardado = parseInt(($("#totalparcial1")).html()) + 
     parseInt(($("#totalparcial2")).html()) +
     parseInt(($("#totalparcial3")).html()) + 
@@ -150,7 +148,6 @@ function Guardar(){
     $("#total").html(totalGuardado)
     
     localStorage.clear();
-
         localStorage.setItem("cotizacionPrevia1",JSON.stringify({"Servicio1" : Servicio1.nombre, "Cantidad1" : parseInt($("#cantidad1").val()),"TotalParcial1" : $("#totalparcial1").html()}))
         localStorage.setItem("cotizacionPrevia2",JSON.stringify({"Servicio2" : Servicio2.nombre, "Cantidad2" : parseInt($("#cantidad2").val()),"TotalParcial2" : $("#totalparcial2").html()}))
         localStorage.setItem("cotizacionPrevia3",JSON.stringify({"Servicio3" : Servicio3.nombre, "Cantidad3" : parseInt($("#cantidad3").val()),"TotalParcial3" : $("#totalparcial3").html()}))
@@ -158,9 +155,7 @@ function Guardar(){
         localStorage.setItem("cotizacionPrevia5",JSON.stringify({"Servicio5" : Servicio5.nombre, "Cantidad5" : parseInt($("#cantidad5").val()),"TotalParcial5" : $("#totalparcial5").html()}))
         localStorage.setItem("cotizacionPrevia6",JSON.stringify({"Servicio6" : Servicio6.nombre, "Cantidad6" : parseInt($("#cantidad6").val()),"TotalParcial6" : $("#totalparcial6").html()}))
         localStorage.setItem("cotizacionPreviaTotal", JSON.stringify({"Total": totalGuardado}))
-    
 }
-
 
 $.get('https://www.dolarsi.com/api/api.php?type=valoresprincipales',
         function(data, status){ 
@@ -168,133 +163,60 @@ $.get('https://www.dolarsi.com/api/api.php?type=valoresprincipales',
             sessionStorage.setItem("Preciodolar",JSON.stringify({"Preciodolar": (data[1].casa).venta}))      
 });
 
-
 function CotizacionPrevia(){
+    document.getElementById("thead").innerHTML=`
+        <tr>
+            <th scope="col" style="width: 10em;">Servicio</th>
+            <th scope="col" style="width: 7em;">Cantidad</th>
+            <th scope="col" style="width: 10em;">Precio</th>
+        </tr>`
 
     if((JSON.parse(localStorage.getItem("cotizacionPrevia1"))).Cantidad1 > 0){
-        var para = document.createElement("div");
-        para.setAttribute("class", "col-md-4")
-        para.innerText = (JSON.parse(localStorage.getItem("cotizacionPrevia1"))).Servicio1;
-        document.getElementById("myDIV").appendChild(para);
-
-        var para2 = document.createElement("div");
-        para2.setAttribute("class", "col-md-4")
-        para2.innerText = (JSON.parse(localStorage.getItem("cotizacionPrevia1"))).Cantidad1;
-        document.getElementById("myDIV").appendChild(para2);
-
-        var para3 = document.createElement("div");
-        para3.setAttribute("class", "col-md-4")
-        para3.innerText = (JSON.parse(localStorage.getItem("cotizacionPrevia1"))).TotalParcial1;
-        document.getElementById("myDIV").appendChild(para3);    
+        document.getElementById("tbody1").innerHTML=`
+                <th scope="row">${(JSON.parse(localStorage.getItem("cotizacionPrevia1"))).Servicio1}</th>
+                <td>${(JSON.parse(localStorage.getItem("cotizacionPrevia1"))).Cantidad1}</td>
+                <td>${(JSON.parse(localStorage.getItem("cotizacionPrevia1"))).TotalParcial1}</td>`
     }
     if((JSON.parse(localStorage.getItem("cotizacionPrevia2"))).Cantidad2 > 0){
-        var para = document.createElement("div");
-        para.setAttribute("class", "col-md-4")
-        para.innerText = (JSON.parse(localStorage.getItem("cotizacionPrevia2"))).Servicio2;
-        document.getElementById("myDIV").appendChild(para);
-
-        var para2 = document.createElement("div");
-        para2.setAttribute("class", "col-md-4")
-        para2.innerText = (JSON.parse(localStorage.getItem("cotizacionPrevia2"))).Cantidad2;
-        document.getElementById("myDIV").appendChild(para2);
-
-        var para3 = document.createElement("div");
-        para3.setAttribute("class", "col-md-4")
-        para3.innerText = (JSON.parse(localStorage.getItem("cotizacionPrevia2"))).TotalParcial2;
-        document.getElementById("myDIV").appendChild(para3);
+        document.getElementById("tbody2").innerHTML=`
+                <th scope="row">${(JSON.parse(localStorage.getItem("cotizacionPrevia2"))).Servicio2}</th>
+                <td>${(JSON.parse(localStorage.getItem("cotizacionPrevia2"))).Cantidad2}</td>
+                <td>${(JSON.parse(localStorage.getItem("cotizacionPrevia2"))).TotalParcial2}</td>`
     }
     if((JSON.parse(localStorage.getItem("cotizacionPrevia3"))).Cantidad3 > 0){
-        var para = document.createElement("div");
-        para.setAttribute("class", "col-md-4")
-        para.innerText = (JSON.parse(localStorage.getItem("cotizacionPrevia3"))).Servicio3;
-        document.getElementById("myDIV").appendChild(para);
-
-        var para2 = document.createElement("div");
-        para2.setAttribute("class", "col-md-4")
-        para2.innerText = (JSON.parse(localStorage.getItem("cotizacionPrevia3"))).Cantidad3;
-        document.getElementById("myDIV").appendChild(para2);
-
-        var para3 = document.createElement("div");
-        para3.setAttribute("class", "col-md-4")
-        para3.innerText = (JSON.parse(localStorage.getItem("cotizacionPrevia3"))).TotalParcial3;
-        document.getElementById("myDIV").appendChild(para3);
+        document.getElementById("tbody3").innerHTML=`
+                <th scope="row">${(JSON.parse(localStorage.getItem("cotizacionPrevia3"))).Servicio3}</th>
+                <td>${(JSON.parse(localStorage.getItem("cotizacionPrevia3"))).Cantidad3}</td>
+                <td>${(JSON.parse(localStorage.getItem("cotizacionPrevia3"))).TotalParcial3}</td>`
     }
     if((JSON.parse(localStorage.getItem("cotizacionPrevia4"))).Cantidad4 > 0){
-        var para = document.createElement("div");
-        para.setAttribute("class", "col-md-4")
-        para.innerText = (JSON.parse(localStorage.getItem("cotizacionPrevia4"))).Servicio4;
-        document.getElementById("myDIV").appendChild(para);
-
-        var para2 = document.createElement("div");
-        para2.setAttribute("class", "col-md-4")
-        para2.innerText = (JSON.parse(localStorage.getItem("cotizacionPrevia4"))).Cantidad4;
-        document.getElementById("myDIV").appendChild(para2);
-
-        var para3 = document.createElement("div");
-        para3.setAttribute("class", "col-md-4")
-        para3.innerText = (JSON.parse(localStorage.getItem("cotizacionPrevia4"))).TotalParcial4;
-        document.getElementById("myDIV").appendChild(para3);
+        document.getElementById("tbody4").innerHTML=`
+                <th scope="row">${(JSON.parse(localStorage.getItem("cotizacionPrevia4"))).Servicio4}</th>
+                <td>${(JSON.parse(localStorage.getItem("cotizacionPrevia4"))).Cantidad4}</td>
+                <td>${(JSON.parse(localStorage.getItem("cotizacionPrevia4"))).TotalParcial4}</td>`
     }
     if((JSON.parse(localStorage.getItem("cotizacionPrevia5"))).Cantidad5 > 0){
-        var para = document.createElement("div");
-        para.setAttribute("class", "col-md-4")
-        para.innerText = (JSON.parse(localStorage.getItem("cotizacionPrevia5"))).Servicio5;
-        document.getElementById("myDIV").appendChild(para);
-
-        var para2 = document.createElement("div");
-        para2.setAttribute("class", "col-md-4")
-        para2.innerText = (JSON.parse(localStorage.getItem("cotizacionPrevia5"))).Cantidad5;
-        document.getElementById("myDIV").appendChild(para2);
-
-        var para3 = document.createElement("div");
-        para3.setAttribute("class", "col-md-4")
-        para3.innerText = (JSON.parse(localStorage.getItem("cotizacionPrevia5"))).TotalParcial5;
-        document.getElementById("myDIV").appendChild(para3);
+        document.getElementById("tbody5").innerHTML=`
+                <th scope="row">${(JSON.parse(localStorage.getItem("cotizacionPrevia5"))).Servicio5}</th>
+                <td>${(JSON.parse(localStorage.getItem("cotizacionPrevia5"))).Cantidad5}</td>
+                <td>${(JSON.parse(localStorage.getItem("cotizacionPrevia5"))).TotalParcial5}</td>`
     }
     if((JSON.parse(localStorage.getItem("cotizacionPrevia6"))).Cantidad6 > 0){
-        var para = document.createElement("div");
-        para.setAttribute("class", "col-md-4")
-        para.innerText = (JSON.parse(localStorage.getItem("cotizacionPrevia6"))).Servicio6;
-        document.getElementById("myDIV").appendChild(para);
-
-        var para2 = document.createElement("div");
-        para2.setAttribute("class", "col-md-4")
-        para2.innerText = (JSON.parse(localStorage.getItem("cotizacionPrevia6"))).Cantidad6;
-        document.getElementById("myDIV").appendChild(para2);
-
-        var para3 = document.createElement("div");
-        para3.setAttribute("class", "col-md-4")
-        para3.innerText = (JSON.parse(localStorage.getItem("cotizacionPrevia6"))).TotalParcial6;
-        document.getElementById("myDIV").appendChild(para3);
+        document.getElementById("tbody6").innerHTML=`
+                <th scope="row">${(JSON.parse(localStorage.getItem("cotizacionPrevia6"))).Servicio6}</th>
+                <td>${(JSON.parse(localStorage.getItem("cotizacionPrevia6"))).Cantidad6}</td>
+                <td>${(JSON.parse(localStorage.getItem("cotizacionPrevia6"))).TotalParcial6}</td>`
     }
-    var para = document.createElement("div");
-    para.setAttribute("class", "col-md-6")
-    para.innerText = "Total";
-    document.getElementById("myDIV").appendChild(para);
+    document.getElementById("tbodyTotal").innerHTML=`
+            <th scope="row">Total</th>
+            <td> </td>
+            <th scope="col">${(JSON.parse(localStorage.getItem("cotizacionPreviaTotal"))).Total}</th>`
 
-    var para2 = document.createElement("div");
-    para2.setAttribute("class", "col-md-6")
-    para2.innerText = (JSON.parse(localStorage.getItem("cotizacionPreviaTotal"))).Total;
-    document.getElementById("myDIV").appendChild(para2);
+    document.getElementById("tbodyTotalUsd").innerHTML=`
+            <th scope="row">Total U$D</th>
+            <td> </td>
+            <th scope="col">${((JSON.parse(localStorage.getItem("cotizacionPreviaTotal"))).Total / 
+            parseInt((JSON.parse(sessionStorage.getItem("Preciodolar"))).Preciodolar)).toFixed(2)}</th>`
 
-    var para = document.createElement("div");
-    para.setAttribute("class", "col-md-6")
-    para.innerText = "Total U$D";
-    document.getElementById("myDIV").appendChild(para);
-
-    var para2 = document.createElement("div");
-    para2.setAttribute("class", "col-md-6")
-    para2.innerText = 
-    ((JSON.parse(localStorage.getItem("cotizacionPreviaTotal"))).Total / 
-    parseInt((JSON.parse(sessionStorage.getItem("Preciodolar"))).Preciodolar)).toFixed(2)
-    document.getElementById("myDIV").appendChild(para2);
-
-    document.getElementById("tbody").innerHTML=`<p>prueba</p>`
-
-    //para agregar variables ${}
-
-    //href="disabled"
-    // no es co href
-    // jajajaja
-    //disabled="disabled"
+    $("#btn-cotizacionPrevia").disabled = true;
 }

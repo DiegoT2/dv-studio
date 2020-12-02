@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300&display=swap" rel="stylesheet">
 </head>
 <body  class="cotizador" >
-    <img src=".\Images\Bannerchico.jpg" class="img-fluid" alt="Responsive image">
+    <img src=".\Images\Bannerchico.jpg" id="bg" class="img-fluid" alt="Responsive image">
     
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
       <a class="navbar-brand" href=".\index.html" ><img src=".\Images\iconlogo.png" alt=""></a>
@@ -35,7 +35,7 @@
   </nav>
     
     <div style="padding-right:10%; padding-left:10%; padding-top: 3%">
-    <table class="table " style="margin-top: 3em; padding: 8em;">
+    <table class="table" style="margin-top: 3em; padding: 8em;">
       <thead>
         <tr>
           <th scope="col" style="width: 10em;"></th>
@@ -47,20 +47,20 @@
       <tbody>
         <tr>
           <th scope="row">Render Exterior</th>
-          <td><input onchange="calculoAuto1(this.value)" type="number" id="cantidad1"min="0" max="25" value="0" size="3px" ></td>
+          <td><input onKeyDown="return false" onchange="calculoAuto1(this.value)" type="number" id="cantidad1"min="0" max="25" value="0" size="3px" ></td>
           <td>-</td>
           <td id="totalparcial1">0</td>
         </tr>
         <tr>
           <th scope="row">Render Interior</th>
-          <td><input onchange="calculoAuto2(this.value)" type="number" id="cantidad2" min="0" max="25" value="0" size="3px"> </td>
+          <td><input onKeyDown="return false" onchange="calculoAuto2(this.value)" type="number" id="cantidad2" min="0" max="25" value="0" size="3px"> </td>
           <td>-</td>
           <td id="totalparcial2">0</td>
         </tr>
         <tr>
           <th scope="row">Plano de Arquitectura</th>
           <td>
-            <input onchange="calculoAuto3()" type="number" id="cantidad3" min="0" max="25" value="0" size="3px">
+            <input onKeyDown="return false" onchange="calculoAuto3()" type="number" id="cantidad3" min="0" max="25" value="0" size="3px">
           </td>
           <td>
             <div class="row">
@@ -74,7 +74,7 @@
         </tr>
         <tr>
           <th scope="row">Presentacion Municipal</th>
-          <td><input onchange="calculoAuto4()"  type="number" id="cantidad4" min="0" max="25" value="0" size="3px"> </td>
+          <td><input onKeyDown="return false" onchange="calculoAuto4()"  type="number" id="cantidad4" min="0" max="25" value="0" size="3px"> </td>
           <td>
             <div class="row">
               <div class="col-xl-9">
@@ -87,7 +87,7 @@
         </tr>
         <tr>
           <th scope="row">Simulacion de Incendio</th>
-          <td><input onchange="calculoAuto5()" type="number" id="cantidad5" min="0" max="25" value="0" size="3px"> </td>
+          <td><input onKeyDown="return false" onchange="calculoAuto5()" type="number" id="cantidad5" min="0" max="25" value="0" size="3px"> </td>
           <td>
             <div class="row">
               <div class="col-xl-9">
@@ -100,7 +100,7 @@
         </tr>
         <tr>
           <th scope="row">Plano de Evacuacion</th>
-          <td><input onchange="calculoAuto6()" type="number" id="cantidad6" min="0" max="25" value="0" size="3px" > </td>
+          <td><input onKeyDown="return false" onchange="calculoAuto6()" type="number" id="cantidad6" min="0" max="25" value="0" size="3px" > </td>
           <td>
             <div class="row">
               <div class="col-xl-9">
@@ -114,7 +114,7 @@
         <tr>
           <th scope="row"></th>
           <td></td>
-          <td><button class="btn btn-secondary" onclick="Guardar()">Calcular</button></td>
+          <td><button class="btn btn-secondary" onclick="Calcular()">Calcular</button></td>
           <td id="total">0</td>
         </tr>
       </tbody>
@@ -124,26 +124,38 @@
     
     <div class="d-flex justify-content-left row" style="padding: 2%">
       <div class="col">
-        <button class="btn btn-secondary" onclick="CotizacionPrevia()">Cotizacion Previa</button>
-        <div class="d-flex justify-content-center row" style="padding: 2%" id="myDIV"></div>
-        <div id="tbody"></div>
+        <button id="btn-cotizacionPrevia" class="btn btn-secondary" onclick="CotizacionPrevia()">Cotizacion Previa</button>
+        <div style="padding-right:10%; padding-left:10%; padding-top: 3%">
+          <table class="table " id="printTable" style="padding: 5em">
+            <thead id="thead"></thead>
+            <tbody>
+              <tr id="tbody1"></tr>
+              <tr id="tbody2"></tr>
+              <tr id="tbody3"></tr>
+              <tr id="tbody4"></tr>
+              <tr id="tbody5"></tr>
+              <tr id="tbody6"></tr>
+              <tr id="tbodyTotal"></tr>
+              <tr id="tbodyTotalUsd"></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-
-
+      
     <div class="cointainer-fluid bg-dark contacto" id="Contacto">
       <div class="row" style="padding: 2em;  text-align: center;">
-        <div class="col-md">    <a href="Portfolio">Portfolio</a>              </div>
+        <div class="col-md">    <a href=".\index.html">Portfolio</a>              </div>
         <div class="col-md">    <a href=".\cotizador.html">Cotizador</a>        </div>
         <div class="col-md">
-          <div >  <a href=" ">+54 911 3016 6641</a>  </div> 
-          <div >  <a href=" ">Diego.Tomassetti97@gmail.com</a>  </div> 
+          <div >  <a href=" https://api.whatsapp.com/send/?phone=5491130166641&text&app_absent=0 ">+54 911 3016 6641</a>  </div> 
+          <div >  <a href=" mailto:Diego.Tomassetti97@gmail.com ">Diego.Tomassetti97@gmail.com</a>  </div> 
         </div>
       </div>
       <div class="col-xl" style="padding-bottom: 2em;">
         <h3>2020 Dv-Studio. All Rights Reserved.</h3>
       </div>
     </div>
-    
+  
 </body>
 </html>
