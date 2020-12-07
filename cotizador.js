@@ -42,7 +42,6 @@ var outputSup5 = $("#customRange5");
 var outputSup6 = $("#customRange6");
  var sliderValue6 = $("#valueSlider6");
 
-
 function calculoAuto1(val) {
     var divobj = $("#totalparcial1");
     var tot_price = val * Servicio1.precio;
@@ -164,59 +163,71 @@ $.get('https://www.dolarsi.com/api/api.php?type=valoresprincipales',
 });
 
 function CotizacionPrevia(){
-    document.getElementById("thead").innerHTML=`
+    if((localStorage.getItem("cotizacionPrevia1")) != null){
+        document.getElementById("thead").innerHTML=`
         <tr>
             <th scope="col" style="width: 10em;">Servicio</th>
             <th scope="col" style="width: 7em;">Cantidad</th>
             <th scope="col" style="width: 10em;">Precio</th>
         </tr>`
-
-    if((JSON.parse(localStorage.getItem("cotizacionPrevia1"))).Cantidad1 > 0){
+    }
+    if((localStorage.getItem("cotizacionPrevia1")) == null){
+    }else if((JSON.parse(localStorage.getItem("cotizacionPrevia1"))).Cantidad1 > 0){
         document.getElementById("tbody1").innerHTML=`
                 <th scope="row">${(JSON.parse(localStorage.getItem("cotizacionPrevia1"))).Servicio1}</th>
                 <td>${(JSON.parse(localStorage.getItem("cotizacionPrevia1"))).Cantidad1}</td>
                 <td>${(JSON.parse(localStorage.getItem("cotizacionPrevia1"))).TotalParcial1}</td>`
     }
-    if((JSON.parse(localStorage.getItem("cotizacionPrevia2"))).Cantidad2 > 0){
+    if((localStorage.getItem("cotizacionPrevia2")) == null){
+    }else if((JSON.parse(localStorage.getItem("cotizacionPrevia2"))).Cantidad2 > 0){
         document.getElementById("tbody2").innerHTML=`
                 <th scope="row">${(JSON.parse(localStorage.getItem("cotizacionPrevia2"))).Servicio2}</th>
                 <td>${(JSON.parse(localStorage.getItem("cotizacionPrevia2"))).Cantidad2}</td>
                 <td>${(JSON.parse(localStorage.getItem("cotizacionPrevia2"))).TotalParcial2}</td>`
     }
-    if((JSON.parse(localStorage.getItem("cotizacionPrevia3"))).Cantidad3 > 0){
+    if((localStorage.getItem("cotizacionPrevia3")) == null){
+    }else if((JSON.parse(localStorage.getItem("cotizacionPrevia3"))).Cantidad3 > 0){
         document.getElementById("tbody3").innerHTML=`
                 <th scope="row">${(JSON.parse(localStorage.getItem("cotizacionPrevia3"))).Servicio3}</th>
                 <td>${(JSON.parse(localStorage.getItem("cotizacionPrevia3"))).Cantidad3}</td>
                 <td>${(JSON.parse(localStorage.getItem("cotizacionPrevia3"))).TotalParcial3}</td>`
     }
-    if((JSON.parse(localStorage.getItem("cotizacionPrevia4"))).Cantidad4 > 0){
+    if((localStorage.getItem("cotizacionPrevia4")) == null){
+    }else if((JSON.parse(localStorage.getItem("cotizacionPrevia4"))).Cantidad4 > 0){
         document.getElementById("tbody4").innerHTML=`
                 <th scope="row">${(JSON.parse(localStorage.getItem("cotizacionPrevia4"))).Servicio4}</th>
                 <td>${(JSON.parse(localStorage.getItem("cotizacionPrevia4"))).Cantidad4}</td>
                 <td>${(JSON.parse(localStorage.getItem("cotizacionPrevia4"))).TotalParcial4}</td>`
     }
-    if((JSON.parse(localStorage.getItem("cotizacionPrevia5"))).Cantidad5 > 0){
+    if((localStorage.getItem("cotizacionPrevia5")) == null){
+    }else if((JSON.parse(localStorage.getItem("cotizacionPrevia5"))).Cantidad5 > 0){
         document.getElementById("tbody5").innerHTML=`
                 <th scope="row">${(JSON.parse(localStorage.getItem("cotizacionPrevia5"))).Servicio5}</th>
                 <td>${(JSON.parse(localStorage.getItem("cotizacionPrevia5"))).Cantidad5}</td>
                 <td>${(JSON.parse(localStorage.getItem("cotizacionPrevia5"))).TotalParcial5}</td>`
     }
-    if((JSON.parse(localStorage.getItem("cotizacionPrevia6"))).Cantidad6 > 0){
+    if((localStorage.getItem("cotizacionPrevia6")) == null){
+    }else if((JSON.parse(localStorage.getItem("cotizacionPrevia6"))).Cantidad6 > 0){
         document.getElementById("tbody6").innerHTML=`
                 <th scope="row">${(JSON.parse(localStorage.getItem("cotizacionPrevia6"))).Servicio6}</th>
                 <td>${(JSON.parse(localStorage.getItem("cotizacionPrevia6"))).Cantidad6}</td>
                 <td>${(JSON.parse(localStorage.getItem("cotizacionPrevia6"))).TotalParcial6}</td>`
     }
-    document.getElementById("tbodyTotal").innerHTML=`
+    if((localStorage.getItem("cotizacionPreviaTotal")) == null){
+        document.getElementById("tbodyTotal").innerHTML=`
+        <th scope="row">No se realizo ninguna cotizacion previa, cargue los datos y presione el boton calcular.</th>`
+    }else if((JSON.parse(localStorage.getItem("cotizacionPreviaTotal"))).Total > 0){
+        document.getElementById("tbodyTotal").innerHTML=`
             <th scope="row">Total</th>
             <td> </td>
             <th scope="col">${(JSON.parse(localStorage.getItem("cotizacionPreviaTotal"))).Total}</th>`
 
-    document.getElementById("tbodyTotalUsd").innerHTML=`
+        document.getElementById("tbodyTotalUsd").innerHTML=`
             <th scope="row">Total U$D</th>
             <td> </td>
             <th scope="col">${((JSON.parse(localStorage.getItem("cotizacionPreviaTotal"))).Total / 
             parseInt((JSON.parse(sessionStorage.getItem("Preciodolar"))).Preciodolar)).toFixed(2)}</th>`
 
-    $("#btn-cotizacionPrevia").disabled = true;
+        $("#btn-cotizacionPrevia").disabled = true;
+    }
 }
